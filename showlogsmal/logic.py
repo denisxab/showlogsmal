@@ -8,7 +8,7 @@ from typing import Union
 from urwid import MainLoop, Overlay, Edit, Text
 
 from base_template import ShowLogFileBase
-from widget import ConsolesColumns, LogObj, MenuConsole
+from widget import ConsolesPile, LogObj, MenuConsole
 
 
 class ShowLogFile(ShowLogFileBase):
@@ -25,8 +25,9 @@ class ShowLogFile(ShowLogFileBase):
         #: Список объектов для консолей
         self.arr_console_log: tuple[LogObj] = tuple(LogObj(_index, _path)
                                                     for _index, _path in enumerate(arr_path_file))
+
         #: Инициализируем все консоли
-        self.console_columns: ConsolesColumns = ConsolesColumns(
+        self.console_columns: ConsolesPile = ConsolesPile(
             title_names=self.arr_console_log,
             root=self
         )
@@ -74,7 +75,7 @@ class ShowLogFile(ShowLogFileBase):
             case 'close':
                 self.loop.widget = self.console_columns
             case "help":
-                output_widget.set_text(f"{ConsolesColumns.keypress.__doc__}\n{self.ExecuteCommand.__doc__}")
+                output_widget.set_text(f"{ConsolesPile.keypress.__doc__}\n{self.ExecuteCommand.__doc__}")
 
     def loop_thread_tail_file(self):
         """

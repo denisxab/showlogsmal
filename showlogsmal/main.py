@@ -1,6 +1,6 @@
 from click import argument, command, option
 
-from showlog import ShowLogFile
+from logic import ShowLogFile
 
 
 @command(help='Следить за указанными файлами')

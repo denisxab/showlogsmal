@@ -26,7 +26,7 @@ class LogObj:
         self.pause = False
 
 
-class ConsolesColumns(Pile):
+class ConsolesPile(Pile):
     """
     Колоны с консолями
     """
@@ -36,25 +36,23 @@ class ConsolesColumns(Pile):
         "__index_column",
     ]
 
-    def __init__(self, title_names: tuple[LogObj], root: ShowLogFileBase, focus_positionumn=0, ):
+    def __init__(self, title_names: tuple[LogObj], root: ShowLogFileBase, focus_item=0, ):
         """
         :param title_names:
         :param root:
-        :param focus_positionumn:
+        :param focus_item:
         """
+
         self.root: ShowLogFileBase = root
         #: Обновляем максимум существующий консолей
         ConsoleFrame.new_max_column(len(title_names))
         #: Список консолей
         widget_list = [ConsoleFrame(_console_log) for _console_log in title_names]
         #: Для цикличного перемещения
-        self.__index_column = [focus_positionumn, len(title_names) - 1]
+        self.__index_column = [focus_item, len(title_names) - 1]
         super().__init__(
             widget_list,
-            # dividechars=0,
-            # focus_positionumn=focus_positionumn,
-            # min_width=1,
-            # box_columns=None
+            focus_item=focus_item,
         )
 
     def SendTextInIndex(self, index_: int, text_: Union[str, AnyStr]):
