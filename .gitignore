@@ -1,0 +1,7 @@
+/.idea
+/venvs
+/dist
+/__pycache__/
+/showlogsmal/__pycache__/
+showlogsmal.bin
+/main.build
